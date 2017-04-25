@@ -1,0 +1,4 @@
+(library
+  (public_name nice_parser)
+  (libraries stdio compiler-libs.common)
+)
