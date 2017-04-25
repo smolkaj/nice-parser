@@ -1,0 +1,64 @@
+OASISFormat: 0.4
+OCamlVersion: >= 4.04.0
+Name:        ocaml-parsing
+Version:     0.1
+Synopsis:    Boilerplate code for Menhir + Sedlex
+Authors:     Steffen Smolka <smolka@cs.cornell.edu>
+License:     MIT
+Plugins:     DevFiles (0.4)
+XDevFilesEnableMakefile: true
+BuildTools:
+  ocamlbuild,
+  menhir
+AlphaFeatures:
+  ocamlbuild_more_args
+XOCamlbuildExtraArgs:
+  -use-menhir
+  -cflags -w,@5+8@11@12-40,-short-paths
+  # importing these here ensures they are run last, after ppx_import
+  -package ppx_deriving,ppx_deriving.eq,ppx_deriving.enum,ppx_deriving.show,ppx_jane
+PreBuildCommand:
+  # use external token file; also see _tags and myocamlbuild.ml
+  menhir --only-tokens src/My_Generated_Parser.mly --base src/My_Tokens
+
+Library parser
+  Path: src
+  Install: false
+  CompiledObject: byte
+  InternalModules:
+    My_Generated_Parser,
+    LexBuffer,
+    My_Tokens
+  Modules:
+    My_Lexer,
+    My_Parser
+  BuildDepends:
+    core,
+    sedlex,
+    ppx_import,
+    MenhirLib,
+    compiler-libs.common
+
+Executable test
+  Path: .
+  BuildDepends:
+    parser,
+    core
+  MainIs: test.ml
+  CompiledObject: byte
+  Install: false
+
+Test test
+  TestTools: test
+  Command: ./test.byte
+  Run: true
+
+Document parser
+  Title: docs
+  Type: ocamlbuild (0.4)
+  BuildTools+: ocamldoc
+  Install: true
+  Format: html
+  Index: index.htm
+  XOCamlbuildPath: .
+  XOCamlbuildLibraries: parser
