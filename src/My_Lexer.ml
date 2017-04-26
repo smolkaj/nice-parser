@@ -30,6 +30,7 @@ let _ =
       Some { loc; msg; sub=[]; if_highlight=""; }
     | _ -> None)
 
+
 let failwith buf s = raise (LexError (buf.pos, s))
 
 let illegal buf c =

@@ -10,11 +10,14 @@ open Core.Std
 %%
 
 ast_eof:
-  | a=ast; EOF { a }
+  | ast; EOF { () }
   ;
 
 ast:
-  | LPAR; RPAR { () }
+  | list(nested) { () }
+
+nested:
+  | LPAR; ast; RPAR { () }
   ;
 
 %%
