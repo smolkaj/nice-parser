@@ -70,20 +70,21 @@ and comment depth buf =
   | _ -> assert false
 
 (** returns the next token *)
-let token ~loc_start buf =
+let token buf =
   garbage buf;
   match%sedlex buf with
   | eof -> EOF
   (* parenths *)
   | '(' -> LPAR
   | ')' -> RPAR
+  (* YOUR TOKENS HERE... *)
   | _ -> illegal buf (Char.chr (next buf))
 
 (** wrapper around `token` that records start and end locations *)
 let loc_token buf =
   let () = garbage buf in (* dispose of garbage before recording start location *)
   let loc_start = next_loc buf in
-  let t = token ~loc_start buf in
+  let t = token buf in
   let loc_end = next_loc buf in
   (t, loc_start, loc_end)
 
