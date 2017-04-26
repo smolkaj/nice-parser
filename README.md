@@ -6,7 +6,7 @@ Writing a parser in OCaml requires a surprising amount of boilerplate code. This
 * [oasis](http://oasis.forge.ocamlcore.org), a tool that simplifies building OCaml projects
 
 ## How to build
-With opam, OCaml's packet manager, all dependencies can be installed automatically:
+With [opam](http://opam.ocaml.org), OCaml's packet manager, all dependencies can be installed automatically:
 ```sh
 opam switch 4.04.0                                              # install OCaml 4.04.0
 eval `opam config env`                                          # set env variables
