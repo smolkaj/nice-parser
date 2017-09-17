@@ -20,7 +20,7 @@ XOCamlbuildExtraArgs:
   -tag thread
   -tag extern_tokens
 PreBuildCommand:
-  # use external token file; also see _tags and myocamlbuild.ml
+  # use external token file; also see myocamlbuild.ml and the ocamlbuild flag `-tag extern_tokens` above
   menhir --only-tokens src/My_Generated_Parser.mly --base src/My_Tokens
 
 Library parser
