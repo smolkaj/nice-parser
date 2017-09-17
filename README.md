@@ -15,4 +15,4 @@ opam install menhir sedlex core oasis ppx_import ppx_enumerate ppx_deriving   # 
 ```
 Then, simply run `make` to compile and run `test.ml`.
 
-The code has been tested with OCaml 4.04.0 and oasis 0.4.8.
+The code has been last tested with OCaml 4.04.2 and oasis 0.4.10.
