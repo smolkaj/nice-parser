@@ -16,3 +16,8 @@ opam install menhir sedlex core oasis ppx_import ppx_enumerate ppx_deriving   # 
 Then, simply run `make` to compile and run `test.ml`.
 
 The code has been last tested with OCaml 4.04.2 and oasis 0.4.10.
+
+## TODO
+* Move to Jane Street's [jbuilder](https://github.com/janestreet/jbuilder) (in plase of oasis and ocamlbuild), which is becoming OCaml's de facto standard build system.
+
+Feel free to submit pull requests. Suggestions and changes are welcome.
