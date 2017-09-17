@@ -8,10 +8,10 @@ Writing a parser in OCaml requires a surprising amount of boilerplate code. This
 ## How to build
 With [opam](http://opam.ocaml.org), OCaml's packet manager, all dependencies can be installed automatically:
 ```sh
-opam update                                                     # ensure opam is up to date
-opam switch 4.04.0                                              # install OCaml 4.04.0
-eval `opam config env`                                          # set env variables
-opam install menhir sedlex core oasis ppx_import ppx_deriving   # other dependencies
+opam update                                                                   # ensure opam is up to date
+opam switch 4.04.2                                                            # install OCaml 4.04.2
+eval `opam config env`                                                        # set env variables
+opam install menhir sedlex core oasis ppx_import ppx_enumerate ppx_deriving   # other dependencies
 ```
 Then, simply run `make` to compile and run `test.ml`.
 
