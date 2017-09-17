@@ -2,7 +2,7 @@
     This module is a thin wrapper arounds sedlexing's default buffer, which does
     not provide this functionality. *)
 
-open Core.Std
+open Core
 open Lexing
 
 (** the lex buffer type *)

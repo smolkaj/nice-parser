@@ -12,6 +12,7 @@ _build
 # config files; don't track unless they contain manual modifications
 # _tags
 # myocamlbuild.ml
+_tags
 setup.*
 configure
 

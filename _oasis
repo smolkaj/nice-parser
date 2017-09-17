@@ -16,7 +16,9 @@ XOCamlbuildExtraArgs:
   -use-menhir
   -cflags -w,@5+8@11@12-40,-short-paths
   # importing these here ensures they are run last, after ppx_import
-  -package ppx_deriving,ppx_deriving.eq,ppx_deriving.enum,ppx_deriving.show,ppx_jane
+  -package ppx_enumerate,ppx_deriving.std
+  -tag thread
+  -tag extern_tokens
 PreBuildCommand:
   # use external token file; also see _tags and myocamlbuild.ml
   menhir --only-tokens src/My_Generated_Parser.mly --base src/My_Tokens
@@ -33,14 +35,15 @@ Library parser
     My_Lexer,
     My_Parser
   BuildDepends:
-    core,
+    core (>= v0.9.0),
     sedlex,
     ppx_import,
     MenhirLib,
-    compiler-libs.common
+    compiler-libs.common,
+    threads
 
 Executable test
-  Path: .
+  Path: test
   BuildDepends:
     parser,
     core

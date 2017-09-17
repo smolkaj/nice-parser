@@ -1,4 +1,4 @@
-open Core.Std
+open Core
 
 let () = begin
   printf "\n\nIt's working!\n";

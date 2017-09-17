@@ -1,5 +1,6 @@
 %{
-open Core.Std
+(* OCaml preamble *)
+(* open Core *)
 %}
 
 (* tokens *)
