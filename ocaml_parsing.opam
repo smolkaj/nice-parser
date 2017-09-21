@@ -1,0 +1,25 @@
+opam-version: "1.2"
+available: [ ocaml-version >= "4.04.0" ]
+version: "1.0"
+maintainer: "Steffen Smolka <smolka@cs.cornell.edu>"
+authors: "Steffen Smolka <smolka@cs.cornell.edu>"
+bug-reports: "https://github.com/smolkaj/ocaml-parsing/issues"
+dev-repo: "https://github.com/smolkaj/ocaml-parsing.git"
+homepage: "https://github.com/smolkaj/ocaml-parsing"
+license: "MIT"
+
+build: ["jbuilder" "build" "-p" name "-j" jobs]
+build-doc: ["jbuilder" "build" "@doc" "-p" name "-j" jobs]
+build-test: ["jbuilder" "runtest" "-p" name "-j" jobs]
+install: ["jbuilder" "install" "-p" name "-j" jobs]
+
+depends: [
+  "jbuilder" {>="1.0+beta13"}
+  "cppo"
+  "odoc"
+  "menhir"
+  #########################
+  "core"   {>= "0.9.0"}
+  "sedlex"
+  "ppx_deriving"
+]

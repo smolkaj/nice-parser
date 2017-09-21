@@ -1,53 +1,25 @@
-# Suppress duplicate topdirs.cmi warnings.
-OCAMLFIND_IGNORE_DUPS_IN = $(shell ocamlfind query compiler-libs)
-export OCAMLFIND_IGNORE_DUPS_IN
+INSTALL_ARGS := $(if $(PREFIX),--prefix $(PREFIX),)
 
-.NOTPARALLEL:
+build:
+	time -p jbuilder build @install
 
-default:
-	oasis setup-clean
-	oasis setup
-	./configure --enable-tests
-	$(MAKE) -C . all
+install:
+	jbuilder install $(INSTALL_ARGS)
 
-# OASIS_START
-# DO NOT EDIT (digest: a3c674b4239234cbbe53afe090018954)
+uninstall:
+	jbuilder uninstall $(INSTALL_ARGS)
 
-SETUP = ocaml setup.ml
-
-build: setup.data
-	$(SETUP) -build $(BUILDFLAGS)
-
-doc: setup.data build
-	$(SETUP) -doc $(DOCFLAGS)
-
-test: setup.data build
-	$(SETUP) -test $(TESTFLAGS)
-
-all:
-	$(SETUP) -all $(ALLFLAGS)
-
-install: setup.data
-	$(SETUP) -install $(INSTALLFLAGS)
-
-uninstall: setup.data
-	$(SETUP) -uninstall $(UNINSTALLFLAGS)
-
-reinstall: setup.data
-	$(SETUP) -reinstall $(REINSTALLFLAGS)
+reinstall: uninstall reinstall
 
 clean:
-	$(SETUP) -clean $(CLEANFLAGS)
+	jbuilder clean
 
-distclean:
-	$(SETUP) -distclean $(DISTCLEANFLAGS)
+doc:
+	jbuilder build @doc
 
-setup.data:
-	$(SETUP) -configure $(CONFIGUREFLAGS)
+test:
+	jbuilder build @runtest
 
-configure:
-	$(SETUP) -configure $(CONFIGUREFLAGS)
+all: build test doc
 
-.PHONY: build doc test all install uninstall reinstall clean distclean configure
-
-# OASIS_STOP
+.PHONY: build install uninstall reinstall clean doc test all

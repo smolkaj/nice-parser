@@ -1,14 +1,15 @@
 open Core
+open Ocaml_parsing
 
 let () = begin
   printf "\n\nIt's working!\n";
 
   (* enable pretty error messages *)
-  My_Parser.pp_exceptions ();
+  Parser.pp_exceptions ();
 
   printf "\nMy Tokens:\n";
-  List.iter My_Lexer.all_of_token ~f:(fun t ->
-    My_Lexer.show_token t
+  List.iter Lexer.all_of_token ~f:(fun t ->
+    Lexer.show_token t
     |> printf "  %s\n");
 
   let s1 = "() ( ()() (()()) )" in
@@ -16,7 +17,7 @@ let () = begin
   let s3 = "( () () ) ) ()" in
   List.iter [s1; s2; s3 ] ~f:(fun s ->
     printf "\nTrying to parse \"%s\".\n" s;
-    My_Parser.ast_of_string s;
+    Parser.ast_of_string s;
     printf "-> success!\n";
   );
   ()

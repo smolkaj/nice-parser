@@ -1,0 +1,12 @@
+(jbuild_version 1)
+
+(executable
+ ((name        test)
+  (libraries (core ocaml_parsing))
+))
+
+;; makes sure the executable is built and run in test mode
+(alias
+  ((name    runtest)
+   (deps ((file test.exe)))
+))

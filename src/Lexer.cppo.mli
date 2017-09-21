@@ -1,4 +1,5 @@
-type token = [%import: My_Tokens.token] [@@deriving show, enumerate];;
+#include "Tokens.ml"
+  [@@deriving show, enumerate]
 
 type ('token, 'a) parser =
   (Lexing.lexbuf -> 'token) -> Lexing.lexbuf -> 'a

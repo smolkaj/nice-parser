@@ -1,9 +1,5 @@
-module Location = struct
-  include Location
-  let pp = print
-end
-
-type token = [%import: My_Tokens.token] [@@deriving show, enumerate];;
+#include "Tokens.ml"
+  [@@deriving show, enumerate]
 
 (* use custom lexbuffer to keep track of source location *)
 module Sedlexing = LexBuffer
@@ -15,7 +11,7 @@ exception LexError of (Lexing.position * string)
 (** Signals a parsing error at the provided token and its start and end locations. *)
 exception ParseError of (token * Lexing.position * Lexing.position)
 
-(** Register exceptions for pretty printing *)
+(* Register exceptions for pretty printing *)
 let _ =
   let open Location in
   register_error_of_exn (function
@@ -38,7 +34,7 @@ let illegal buf c =
   |> Printf.sprintf "unexpected character in expression: '%s'"
   |> failwith buf
 
-(** regular expressions  *)
+(* regular expressions  *)
 let letter = [%sedlex.regexp? 'A'..'Z' | 'a'..'z']
 let digit = [%sedlex.regexp? '0'..'9']
 let id_init = [%sedlex.regexp? letter  | '_']
@@ -52,7 +48,7 @@ let hexbyte = [%sedlex.regexp? hex,hex ]
 let blank = [%sedlex.regexp? ' ' | '\t' ]
 let newline = [%sedlex.regexp? '\r' | '\n' | "\r\n" ]
 
-(** swallows whitespace and comments *)
+(* swallows whitespace and comments *)
 let rec garbage buf =
   match%sedlex buf with
   | newline -> garbage buf
@@ -70,7 +66,7 @@ and comment depth buf =
   | any -> comment depth buf
   | _ -> assert false
 
-(** returns the next token *)
+(* returns the next token *)
 let token buf =
   garbage buf;
   match%sedlex buf with
@@ -81,7 +77,7 @@ let token buf =
   (* YOUR TOKENS HERE... *)
   | _ -> illegal buf (Char.chr (next buf))
 
-(** wrapper around `token` that records start and end locations *)
+(* wrapper around `token` that records start and end locations *)
 let loc_token buf =
   let () = garbage buf in (* dispose of garbage before recording start location *)
   let loc_start = next_loc buf in
@@ -90,7 +86,7 @@ let loc_token buf =
   (t, loc_start, loc_end)
 
 
-(** menhir interface *)
+(* menhir interface *)
 type ('token, 'a) parser = ('token, 'a) MenhirLib.Convert.traditional
 
 let parse buf p =

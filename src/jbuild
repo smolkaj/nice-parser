@@ -1,0 +1,41 @@
+(jbuild_version 1)
+
+;; generate menhir tokens
+(rule
+ ((targets (Tokens.ml))
+  (deps    (Menhir_parser.mly))
+  (action  (run ${bin:menhir} --only-tokens ${<} --base Tokens))))
+
+;; generate lexer -- temporary hack while ppx_sedlex and ppx_import are incompatible with jbuilder!!
+(rule
+ ((targets (Lexer.sedlex.ml))
+  (deps    (Lexer.cppo.sedlex.ml Tokens.ml))
+  (action  (run ${bin:cppo} ${<} -n -o ${@}))))
+(rule
+ ((targets (Lexer.mli))
+  (deps    (Lexer.cppo.mli Tokens.ml))
+  (action  (run ${bin:cppo} ${<} -n -o ${@}))))
+(rule
+ ((targets (Lexer.ml))
+  (deps    (Lexer.sedlex.ml))
+  (action  (run ${ocaml_where}/../sedlex/ppx_sedlex ${<} -o ${@}))))
+
+;; generate parser
+(menhir
+ ((modules (Menhir_parser))
+  (flags (--external-tokens Lexer))))
+
+(library
+ ((name        ocaml_parsing)
+  (public_name ocaml_parsing)
+  (wrapped true)
+  (libraries 
+    (core
+     sedlex
+     compiler-libs.common
+     MenhirLib)
+  )
+  (virtual_deps (cppo menhir))
+  (preprocess (pps (ppx_deriving.std ppx_enumerate)))
+ )
+)

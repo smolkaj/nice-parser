@@ -8,6 +8,8 @@ _build
 *.mldylib
 *.docdir
 *.odocl
+*.install
+*.merlin
 
 # config files; don't track unless they contain manual modifications
 # _tags
