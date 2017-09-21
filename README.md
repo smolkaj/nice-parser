@@ -3,7 +3,7 @@ Writing a parser in OCaml requires a surprising amount of boilerplate code. This
 * [Menhir](http://gallium.inria.fr/~fpottier/menhir/), a LR(1) parser generator
 * [Sedlex](https://github.com/alainfrisch/sedlex), a lexer generator with Unicode support
 * Jane Street's [core](https://ocaml.janestreet.com/ocaml-core/latest/doc/), the inofficial standard library for OCaml
-* Jane Street's [jbuilder](http://oasis.forge.ocamlcore.org), an OCaml build system
+* Jane Street's [jbuilder](https://github.com/janestreet/jbuilder), an OCaml build system
 
 ## How to build
 With [opam](http://opam.ocaml.org), OCaml's packet manager, all dependencies can be installed automatically:
