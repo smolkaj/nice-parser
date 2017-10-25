@@ -22,4 +22,7 @@ depends: [
   "core"   {>= "0.9.0"}
   "sedlex"
   "ppx_deriving"
+  "ppx_enumerate"
+  "ocaml-migrate-parsetree.driver-main"
+  "compiler-libs.common"
 ]

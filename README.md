@@ -11,7 +11,7 @@ With [opam](http://opam.ocaml.org), OCaml's packet manager, all dependencies can
 opam update                                     # ensure opam is up to date
 opam switch 4.05                                # install OCaml 4.05
 eval `opam config env`                          # set env variables
-opam pin add --no-action ocaml_parsing .        # install other...
+opam pin add --yes --no-action ocaml_parsing .  # install other...
 opam install --yes --deps-only ocaml_parsing    # ...dependencies
 ```
 Then, simply run `make` to build, and `make test` to build the test file. To run the test file, execute `_build/default/test/test.exe`.
