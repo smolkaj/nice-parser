@@ -2,7 +2,8 @@
     This module is a thin wrapper arounds sedlexing's default buffer, which does
     not provide this functionality. *)
 
-open Core
+open Base
+open Stdio
 open Lexing
 
 (** the lex buffer type *)
@@ -24,7 +25,7 @@ let of_sedlex ?(file="<n/a>") ?pos buf =
   {  buf; pos; pos_mark = pos; last_char = None; last_char_mark = None; }
 
 let of_ascii_string ?pos s =
-  of_sedlex ?pos Sedlexing.(Latin1.from_string s) 
+  of_sedlex ?pos Sedlexing.(Latin1.from_string s)
 
 let of_ascii_file file =
   let chan = In_channel.create file in
@@ -59,11 +60,11 @@ let next lexbuf =
   let pos = next_loc lexbuf in
   (match Char.of_int c with
   | Some '\r' ->
-    lexbuf.pos <- { pos with 
+    lexbuf.pos <- { pos with
       pos_bol = pos.pos_cnum - 1;
       pos_lnum = pos.pos_lnum + 1; }
-  | Some '\n' when not (lexbuf.last_char = Some cr) ->
-    lexbuf.pos <- { pos with 
+  | Some '\n' when not (Option.equal Int.equal lexbuf.last_char (Some cr)) ->
+    lexbuf.pos <- { pos with
       pos_bol = pos.pos_cnum - 1;
       pos_lnum = pos.pos_lnum + 1; }
   | Some '\n' -> ()
@@ -77,4 +78,3 @@ let raw lexbuf : int array =
 let ascii ?(skip=0) ?(drop=0) lexbuf : string =
   let len = Sedlexing.(lexeme_length lexbuf.buf - skip - drop) in
   Sedlexing.(Latin1.sub_lexeme lexbuf.buf skip len)
-
