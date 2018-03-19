@@ -1,4 +1,5 @@
-open Core
+open Base
+open Stdio
 open Ocaml_parsing
 
 let () = begin

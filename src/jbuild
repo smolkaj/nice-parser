@@ -30,8 +30,10 @@
  ((name        ocaml_parsing)
   (public_name ocaml_parsing)
   (wrapped true)
-  (libraries 
-    (core
+  (js_of_ocaml ())
+  (libraries
+    (base
+     stdio
      sedlex
      compiler-libs.common
      menhirLib)
