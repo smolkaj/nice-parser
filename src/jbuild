@@ -27,7 +27,8 @@
   (wrapped true)
   ;;(deps (Tokens))
   (libraries 
-    (core
+    (base
+     stdio
      sedlex
      compiler-libs.common
      menhirLib)

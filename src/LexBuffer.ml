@@ -2,7 +2,8 @@
     This module is a thin wrapper arounds sedlexing's default buffer, which does
     not provide this functionality. *)
 
-open Core
+open Base
+open Stdio
 open Lexing
 
 (** the lex buffer type *)
@@ -57,17 +58,20 @@ let cr = Char.to_int '\r'
 let next lexbuf =
   let c = Sedlexing.next lexbuf.buf in
   let pos = next_loc lexbuf in
-  (match Char.of_int c with
+  begin match Char.of_int c with
   | Some '\r' ->
     lexbuf.pos <- { pos with 
       pos_bol = pos.pos_cnum - 1;
       pos_lnum = pos.pos_lnum + 1; }
-  | Some '\n' when not (lexbuf.last_char = Some cr) ->
+  | Some '\n' when not (Option.equal Int.equal lexbuf.last_char (Some cr)) ->
     lexbuf.pos <- { pos with 
       pos_bol = pos.pos_cnum - 1;
       pos_lnum = pos.pos_lnum + 1; }
-  | Some '\n' -> ()
-  | _ -> lexbuf.pos <- pos);
+  | Some '\n' ->
+    ()
+  | _ ->
+    lexbuf.pos <- pos
+  end;
   lexbuf.last_char <- Some c;
   c
 
