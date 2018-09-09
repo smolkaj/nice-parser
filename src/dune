@@ -1,0 +1,43 @@
+;; generate menhir tokens
+(rule
+ (targets Tokens.ml)
+ (deps Menhir_parser.mly)
+ (action (run menhir --only-tokens %{deps} --base Tokens)))
+
+;; generate lexer -- temporary hack, see https://gitlab.inria.fr/fpottier/menhir/issues/6
+(rule
+ (targets Lexer.ml)
+ (deps    (:f Lexer.cppo.ml) Tokens.ml)
+ (action  (run cppo %{f} -n -o %{targets})))
+
+(rule
+ (targets Lexer.mli)
+ (deps    (:f Lexer.cppo.mli) Tokens.ml)
+ (action  (run cppo %{f} -n -o %{targets})))
+
+;; generate parser
+(menhir
+ (modules Menhir_parser)
+ (flags (--external-tokens Lexer)))
+
+(library
+ (name        ocaml_parsing)
+ (public_name ocaml_parsing)
+ (wrapped true)
+ ;;(deps (Tokens))
+ (libraries 
+   base
+   stdio
+   sedlex
+   compiler-libs.common
+   menhirLib
+ )
+ (virtual_deps cppo menhir)
+ (preprocess (pps ppx_deriving.std ppx_enumerate sedlex.ppx))
+)
+
+;; Ignore unused rec flag warning
+(env
+ (_
+  (flags (:standard -w -39)))
+)
