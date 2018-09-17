@@ -9,7 +9,7 @@ install:
 uninstall:
 	dune uninstall $(INSTALL_ARGS)
 
-reinstall: uninstall reinstall
+reinstall: uninstall install
 
 clean:
 	dune clean
