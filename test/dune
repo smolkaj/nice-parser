@@ -2,10 +2,3 @@
  (name      test)
  (libraries base stdio ocaml_parsing)
 )
-
-;; makes sure the executable is built and run in test mode
-(alias
-  (name runtest)
-  (deps test.exe)
-  (action (run %{deps}))
-)

@@ -18,7 +18,7 @@ doc:
 	dune build @doc
 
 test:
-	dune build @runtest
+	dune runtest --no-buffer
 
 all: build test doc
 
