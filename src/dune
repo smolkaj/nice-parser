@@ -24,7 +24,6 @@
  (name        ocaml_parsing)
  (public_name ocaml_parsing)
  (wrapped true)
- ;;(deps (Tokens))
  (libraries 
    base
    stdio

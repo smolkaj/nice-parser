@@ -19,7 +19,8 @@ depends: [
   "odoc"
   "menhir"
   #########################
-  "core"   {>= "0.9.0"}
+  "base"
+  "stdio"
   "sedlex"
   "ppx_deriving"
   "ppx_enumerate"
