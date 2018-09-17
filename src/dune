@@ -24,18 +24,13 @@
  (name        ocaml_parsing)
  (public_name ocaml_parsing)
  (wrapped true)
+ ;;(deps (Tokens))
  (libraries 
    base
    stdio
    sedlex
    compiler-libs.common
    menhirLib
- )
- (modules
-   lexBuffer
-   lexer
-   menhir_parser
-   parser
  )
  (virtual_deps cppo menhir)
  (preprocess (pps ppx_deriving.std ppx_enumerate sedlex.ppx))
