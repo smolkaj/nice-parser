@@ -35,9 +35,3 @@
  (virtual_deps cppo menhir)
  (preprocess (pps ppx_deriving.std ppx_enumerate sedlex.ppx))
 )
-
-;; Ignore unused rec flag warning
-(env
- (_
-  (flags (:standard -w -39)))
-)
