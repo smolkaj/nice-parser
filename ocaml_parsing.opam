@@ -8,22 +8,21 @@ dev-repo: "https://github.com/smolkaj/ocaml-parsing.git"
 homepage: "https://github.com/smolkaj/ocaml-parsing"
 license: "MIT"
 
-build: ["jbuilder" "build" "-p" name "-j" jobs]
-build-doc: ["jbuilder" "build" "@doc" "-p" name "-j" jobs]
-build-test: ["jbuilder" "runtest" "-p" name "-j" jobs]
-install: ["jbuilder" "install" "-p" name "-j" jobs]
+build: ["dune" "build" "-p" name "-j" jobs]
+build-doc: ["dune" "build" "@doc" "-p" name "-j" jobs]
+build-test: ["dune" "runtest" "-p" name "-j" jobs]
+install: ["dune" "install" "-p" name "-j" jobs]
 
 depends: [
-  "jbuilder" {>="1.0+beta13"}
+  "dune"
   "cppo"
   "odoc"
   "menhir"
   #########################
   "base"
   "stdio"
-  "sedlex"
+  "sedlex" {>= "1.99.4"}
   "ppx_deriving"
   "ppx_enumerate"
-  "ocaml-migrate-parsetree.driver-main"
   "compiler-libs.common"
 ]
