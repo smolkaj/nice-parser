@@ -1,5 +1,5 @@
 opam-version: "1.2"
-available: [ ocaml-version >= "4.04.0" ]
+available: [ ocaml-version >= "4.04.2" ]
 version: "1.0"
 maintainer: "Steffen Smolka <smolka@cs.cornell.edu>"
 authors: "Steffen Smolka <smolka@cs.cornell.edu>"
@@ -15,14 +15,14 @@ install: ["dune" "install" "-p" name "-j" jobs]
 
 depends: [
   "dune"
-  "cppo"
   "odoc"
   "menhir"
   #########################
   "base"
   "stdio"
-  "sedlex" {>= "1.99.4"}
+  "sedlex" {>= "2.0"}
   "ppx_deriving"
   "ppx_enumerate"
+  "ppx_import" {>= "1.6"}
   "compiler-libs.common"
 ]
