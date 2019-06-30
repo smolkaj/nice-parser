@@ -15,6 +15,4 @@
  )
  (virtual_deps menhir)
  (preprocess
-  (per_module
-   ((staged_pps ppx_import ppx_deriving.std ppx_enumerate sedlex.ppx) Lexer)))
-)
+   (staged_pps ppx_import ppx_deriving.std ppx_enumerate sedlex.ppx)))
