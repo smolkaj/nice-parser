@@ -1,5 +1,5 @@
 type token = [%import: Menhir_parser.token]
-  [@@deriving show, enumerate]
+  [@@deriving show { with_path = false }, enumerate]
 
 (* use custom lexbuffer to keep track of source location *)
 module Sedlexing = LexBuffer
