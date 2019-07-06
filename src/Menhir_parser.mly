@@ -1,6 +1,6 @@
 %{
 (* OCaml preamble *)
-(* open Core *)
+(* open Base *)
 %}
 
 (* tokens *)

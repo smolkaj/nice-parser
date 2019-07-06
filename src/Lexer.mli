@@ -1,4 +1,4 @@
-#include "Tokens.ml"
+type token = [%import: Menhir_parser.token]
   [@@deriving show, enumerate]
 
 type ('token, 'a) parser =
@@ -7,5 +7,5 @@ type ('token, 'a) parser =
 val parse : LexBuffer.t -> (token,'a) parser -> 'a
 
 val parse_string : ?pos:Lexing.position -> string  -> (token,'a) parser -> 'a
-  
+
 val parse_file : file:string -> (token,'a) parser -> 'a
