@@ -1,0 +1,14 @@
+(ocamllex (modules lexer))
+(menhir (modules menhir_parser))
+
+(library
+  (name example)
+  (public_name nice_parser.example)
+  (wrapped true)
+  (libraries
+    nice_parser
+    base
+  )
+  (preprocess (pps ppx_jane))
+  (inline_tests)
+)

@@ -1,25 +1,19 @@
-INSTALL_ARGS := $(if $(PREFIX),--prefix $(PREFIX),)
+.PHONY: build install uninstall test clean doc
 
 build:
-	dune build	
+	dune build
+
+test:
+	dune runtest -f --no-buffer
 
 install:
-	dune install $(INSTALL_ARGS)
+	dune install
 
 uninstall:
-	dune uninstall $(INSTALL_ARGS)
+	dune uninstall
 
-reinstall: uninstall install
+doc:
+	dune build @doc --profile release
 
 clean:
 	dune clean
-
-doc:
-	dune build @doc
-
-test:
-	dune runtest --no-buffer
-
-all: build test doc
-
-.PHONY: build install uninstall reinstall clean doc test all

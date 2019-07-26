@@ -1,4 +1,4 @@
-(test
- (name      test)
- (libraries base stdio ocaml_parsing)
-)
+;;(test
+;; (name      test)
+;; (libraries base stdio ocaml_parsing)
+;;)

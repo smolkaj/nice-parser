@@ -1,18 +1,5 @@
-;; generate parser
-(menhir
- (modules Menhir_parser))
-
 (library
- (name        ocaml_parsing)
- (public_name ocaml_parsing)
- (wrapped true)
- (libraries
-   base
-   stdio
-   sedlex
-   compiler-libs.common
-   menhirLib
- )
- (virtual_deps menhir)
- (preprocess
-   (staged_pps ppx_import ppx_deriving.std ppx_enumerate sedlex.ppx)))
+  (public_name nice_parser)
+  (wrapped false)
+  (libraries stdio compiler-libs.common)
+)

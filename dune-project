@@ -1,2 +1,25 @@
-(lang dune 1.1)
-(using menhir 1.0)
+(lang dune 1.10)
+(using menhir 2.0)
+(generate_opam_files true)
+
+(name nice_parser)
+(version 1.0.0)
+(license MIT)
+(source (github netkat-lang/ocaml-parsing))
+(authors "Steffen Smolka <smolka@cs.cornell.edu>")
+(maintainers "Steffen Smolka <smolka@cs.cornell.edu>")
+
+(package
+  (name nice_parser)
+  (synopsis "Wraps your {menhir, ocamlyacc}-generated parser in a sane interface, eliminating boilerplate code")
+  (depends
+    (ocaml (>= 4.03.0))
+    (dune (and :build (>= 1.10)))
+    (stdio (<> 0))
+    (base (<> 0))
+    (odoc :with-doc)
+    (ppx_jane (and :dev :with-test))
+    (ppx_inline_test :with-test)
+    (ppx_expect_test :with-test)
+  )
+)
