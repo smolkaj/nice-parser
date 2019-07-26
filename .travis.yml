@@ -1,0 +1,23 @@
+language: c
+cache:
+  directories:
+  - "/home/travis/.opam/"
+env:
+  global:
+  - PACKAGE=nice_parser
+  - secure: TAJLL8TnfvVCJr+CqTO3EpSYGarSDkC2/eqOQrlxGujXnLdo4Ut7InJKDA91qgWYYYKVGubjzE+6nf+Rh/y8USeYvVALI6vzcpsa+rgYxe+/jnwvDzewtNMMEvd/CntgvHYwE6KjArObe8nh5MTeQUVYY8Ke5p9VEUx6MEy5y7k3qxECX4d/EIN9Xdy7mRtT8b+GKvA6Fu9eqPGGZGrLFvQ8sYpm9p/GzkBbqs/fczI+CFVzSKBRWxPZjfcXcGm9fn45Vk4LcA74CA7kPQDwlJj/w2tZMgmkcq/twiSqd8961Weqh9YeR03QNwyFv+28/gZgrgbB7dR2PaK3b4Scmj8i+W1slHzSC9TQ+88g0mk/Gqmtjmpm5f4XKs+hCU1jRfQack7/OvJEZT9hENnBRIkhdUd2p0YNCGtvj7JytVWu0qs7dFJVlLIp/gvGz8nKI9zfYXQbFvoLcswz6JaHJAPDl7gFEmTZI4c4ScKB/mk45md7MBRe206FZ3Lef2gGRZ5nT1vrxp18o3T7Ku9/owYA63vZjyWnEwaeTWt5F13ahIQond4oTHWuae9yoZmxfWK3KzbLroAQhKpVLaNp3iyAm5Ows3DklTSZf+5/VJvw3hTOnvvVP37yYmBHYm3B0psKgWr6+FTldiGGuiUzkYSod+MfFXmGw673l0e1tTk=
+  matrix:
+  - OCAML=4.07.1
+  - OCAML=4.08.0
+script:
+- echo "yes" | sudo add-apt-repository ppa:avsm/ppa
+- sudo apt-get update -qq
+- sudo apt-get install -qq opam
+- export OPAMYES=1
+- opam init --auto-setup --compiler=$OCAML
+- eval `opam config env`
+- opam upgrade --yes --all
+- opam pin add --yes --no-action $PACKAGE .
+- opam install --yes --deps-only $PACKAGE
+- opam install --yes --verbose --build-doc --build-test --keep-build-dir $PACKAGE
+- bash -ex .travis.docgen.sh
