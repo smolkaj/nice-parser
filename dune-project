@@ -20,6 +20,6 @@
     (odoc :with-doc)
     (ppx_jane (and :dev :with-test))
     (ppx_inline_test :with-test)
-    (ppx_expect_test :with-test)
+    (ppx_expect :with-test)
   )
 )
