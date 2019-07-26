@@ -3,8 +3,6 @@
 
 (library
   (name example)
-  (public_name nice_parser.example)
-  (wrapped true)
   (libraries
     nice_parser
     base
