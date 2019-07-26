@@ -1,5 +1,4 @@
 (library
   (public_name nice_parser)
-  (wrapped false)
   (libraries stdio compiler-libs.common)
 )
