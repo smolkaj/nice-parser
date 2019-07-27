@@ -1,0 +1,22 @@
+.DS_Store
+
+# build files
+_build
+*.native
+*.byte
+*.mllib
+*.mldylib
+*.docdir
+*.odocl
+*.install
+*.merlin
+
+# config files; don't track unless they contain manual modifications
+# _tags
+# myocamlbuild.ml
+_tags
+setup.*
+configure
+
+# auto generated files
+My_Tokens.*
