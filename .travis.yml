@@ -10,15 +10,6 @@ env:
   - OCAML=4.07.1
   - OCAML=4.08.0
 script:
-- echo "yes" | sudo add-apt-repository ppa:avsm/ppa
-- sudo apt-get update -qq
-- sudo apt-get install -qq opam
-- export OPAMYES=1
-- opam init --auto-setup --compiler=$OCAML --reinit
-- opam switch $COMPILER
-- eval `opam config env`
-- opam upgrade --yes --all
-- opam pin add --yes --no-action $PACKAGE .
-- opam install --yes --deps-only $PACKAGE
-- opam install --yes --verbose --build-doc --build-test --keep-build-dir $PACKAGE
-- bash -ex .travis.docgen.sh
+- bash -exuv .travis.test.sh
+- bash -exuv .travis.docgen.sh
+- opam pin remove --yes $PACKAGE

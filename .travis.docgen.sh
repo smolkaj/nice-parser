@@ -1,7 +1,6 @@
 #!/bin/bash
 # From https://github.com/simonjbeaumont/ocaml-travis-gh-pages
 
-set -e
 # Make sure we're not echoing any sensitive data
 set +x
 set -o errexit -o nounset
@@ -22,6 +21,7 @@ rm -rf $DOCDIR
 
 git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} $DOCDIR 2>&1 | sed -e "s/$GH_TOKEN/!REDACTED!/g"
 git -C $DOCDIR checkout gh-pages || git -C $DOCDIR checkout --orphan gh-pages
+git -C $DOCDIR clean -xdf
 
 DOCFILES=$(echo $DOCSRC/*)
 cp -R $DOCFILES $DOCDIR

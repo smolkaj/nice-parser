@@ -17,9 +17,9 @@
   (depends
     (ocaml (>= 4.05.0))
     (dune (and :build (>= 1.10)))
-    (menhir :build)
     (stdio (<> 0))
-    (base (<> 0))
+    (base :with-test)
+    (menhir :with-test)
     (ppx_jane :with-test)
     (ppx_inline_test :with-test)
     (ppx_expect :with-test)
