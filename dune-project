@@ -21,8 +21,6 @@
     (base :with-test)
     (menhir :with-test)
     (ppx_jane :with-test)
-    (ppx_inline_test :with-test)
-    (ppx_expect :with-test)
     (odoc :with-doc)
   )
 )
