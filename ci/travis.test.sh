@@ -1,8 +1,4 @@
 #!/bin/bash
-echo "yes" | sudo add-apt-repository ppa:avsm/ppa
-sudo apt-get update -qq
-sudo apt-get install -qq opam
-export OPAMYES=1
 if ! opam switch $OCAML; then
   rm -rf ~/.opam/$OCAML
   opam init --yes --bare

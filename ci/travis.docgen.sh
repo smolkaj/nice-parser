@@ -5,8 +5,8 @@
 set +x
 set -o errexit -o nounset
 
-if [[ -z "$TRAVIS" || "$TRAVIS_PULL_REQUEST" != "false" || "$TRAVIS_BRANCH" != "master" ]]; then
-  echo "[docgen] This is not a push-to-master Travis build, doing nothing..."
+if [[ -z "$TRAVIS" || "$TRAVIS_OS_NAME" != "linux" || "$TRAVIS_PULL_REQUEST" != "false" || "$TRAVIS_BRANCH" != "master" ]]; then
+  echo "[docgen] This is not a push-to-master linux Travis build, doing nothing..."
   exit 0
 else
   echo "[docgen] Updating docs on Github pages..."
