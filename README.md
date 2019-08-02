@@ -14,11 +14,11 @@ In types: `Nice_parser.Make : functor(P : RAW_PARSER) -> NICE_PARSER`.
 
 Using the library and the skeleton, you can get started on your own parser in seconds:
 ```sh
-opam install nice_parser                                  # install the nice_parser library
+opam install nice_parser                                # install the nice_parser library
 git clone https://github.com/smolkaj/nice-parser.git    # clone this repository
 cd nice-parser && rm -r lib && mv example src           # use example as starting point
-dune build src/example.a                                  # try to build...
-dune exec src/bin/main.exe                                # ...and run your parser!
+dune build src/example.a                                # try to build...
+dune exec src/bin/main.exe                              # ...and run your parser!
 ```
 You should see the following output (the error message relies on OCaml >= 4.08's new [source highlighting mechanism](https://github.com/ocaml/ocaml/pull/2096)):
 ```
