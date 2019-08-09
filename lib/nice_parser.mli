@@ -72,7 +72,9 @@ module type NICE_PARSER = sig
   exception LexError of { msg: string; loc: Location.t }
   exception ParseError of { token: token; loc: Location.t }
   
-  val pp_exceptions : unit -> unit
+  val pp_exceptions : Format.formatter -> exn -> unit
+
+  val register_exception_pp : unit -> unit
   (** Registers a pretty printer for {!LexError} and {!ParseError}. This results
       in colorful error messages including the source location when errrors
       occur. With OCaml >= 4.08, the pretty printer will also quote the

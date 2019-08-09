@@ -5,7 +5,7 @@ let printf = Stdlib.Printf.printf
 let () = begin
 
   (* enable pretty error messages *)
-  Example.Parser.pp_exceptions ();
+  Example.Parser.register_exception_pp ();
 
   let s1 = "(a b (c d) e)" in
   let s2 = "(long_atom_with_0123)" in
