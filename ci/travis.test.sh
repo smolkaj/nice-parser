@@ -5,7 +5,7 @@ if ! opam switch $OCAML; then
   opam switch create $OCAML
 fi
 eval $(opam env)
-opam upgrade --yes --all
+opam update && opam upgrade --yes --all
 opam pin remove --yes $PACKAGE; opam pin add --yes --no-action $PACKAGE .
 opam install --yes --deps-only $PACKAGE
 opam install --yes --verbose --build-doc --build-test --keep-build-dir $PACKAGE
