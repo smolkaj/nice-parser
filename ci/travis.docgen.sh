@@ -21,8 +21,8 @@ rm -rf $DOCDIR
 
 git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} $DOCDIR 2>&1 | sed -e "s/$GH_TOKEN/!REDACTED!/g"
 git -C $DOCDIR checkout gh-pages || git -C $DOCDIR checkout --orphan gh-pages
-git -C $DOCDIR clean -xdf
 
+git rm -r '*'
 DOCFILES=$(echo $DOCSRC/*)
 cp -R $DOCFILES $DOCDIR
 
@@ -32,4 +32,3 @@ git -C $DOCDIR add .
 git -C $DOCDIR commit --allow-empty -m "Travis build $TRAVIS_BUILD_NUMBER pushed docs to gh-pages"
 git -C $DOCDIR push origin gh-pages 2>&1 | sed -e "s/$GH_TOKEN/!REDACTED!/g"
 echo "[docgen] updated docs successfully!"
-
