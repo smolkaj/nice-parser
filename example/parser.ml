@@ -14,7 +14,7 @@ end)
 
 let%test_module _ = (module struct
   
-  Printexc.record_backtrace false;;
+  let () = Printexc.record_backtrace false
 
   let%expect_test "atom" =
     parse_string "this_is_AN_At0m"
