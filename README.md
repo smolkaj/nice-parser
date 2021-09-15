@@ -14,7 +14,7 @@ In types: `Nice_parser.Make : functor(P : RAW_PARSER) -> NICE_PARSER`.
 
 Using the library and the skeleton, you can get started on your own parser in seconds:
 ```sh
-opam install nice_parser                                # install the nice_parser library
+opam install nice_parser ppx_jane                       # install nice_parser and ppx_driver
 git clone https://github.com/smolkaj/nice-parser.git    # clone this repository
 cd nice-parser && rm -r lib && mv example src           # use example as starting point
 dune build src/example.a                                # try to build...
@@ -47,7 +47,7 @@ The [example skeleton](example) should be self-explanatory.
 Ideally, use OCaml 4.08 or higher (for [beautiful error messages](https://github.com/ocaml/ocaml/pull/2096)).
 The project can be built using [dune](https://dune.build).
 Consult the [dune-project file](dune-project) for the necessary dependencies;
-all of them can be installed using the [opam](http://opam.ocaml.org) packet manager.
+all of them can be installed using the [opam](http://opam.ocaml.org) package manager.
 
 ## Suggestions and Improvements
 Suggestions and changes are welcome. Please submit pull requests, or open issues.
