@@ -1,6 +1,8 @@
 *For an older version of this repository based on sedlex, refer to the [sedlex branch](../../tree/sedlex)*.
 
-# Nice Parser [![Build Status](https://travis-ci.org/smolkaj/nice-parser.svg?branch=master)](https://travis-ci.org/smolkaj/nice-parser)
+# Nice Parser
+
+[![Build Status](https://github.com/smolkaj/nice-parser/workflows/build%20and%20test/badge.svg?branch=master)](https://github.com/smolkaj/nice-parser/actions)
 
 Writing an OCaml parser with nice error messages should be easy - and now it is!
 *Nice Parser* comes in two parts:
@@ -14,11 +16,11 @@ In types: `Nice_parser.Make : functor(P : RAW_PARSER) -> NICE_PARSER`.
 
 Using the library and the skeleton, you can get started on your own parser in seconds:
 ```sh
-opam install nice_parser ppx_jane                       # install nice_parser and ppx_driver
-git clone https://github.com/smolkaj/nice-parser.git    # clone this repository
-cd nice-parser && rm -r lib && mv example src           # use example as starting point
-dune build src/example.a                                # try to build...
-dune exec src/bin/main.exe                              # ...and run your parser!
+git clone https://github.com/smolkaj/nice-parser.git  # clone this repository
+cd nice-parser && rm -r lib && mv example src         # use example as starting point
+opam install . --deps-only --with-test                # install dependencies
+dune build                                            # try to build...
+dune exec src/bin/main.exe                            # ...and run your parser!
 ```
 You should see the following output (the error message relies on OCaml >= 4.08's new [source highlighting mechanism](https://github.com/ocaml/ocaml/pull/2096)):
 ```
@@ -45,9 +47,13 @@ The [example skeleton](example) should be self-explanatory.
 
 ## How to build
 Ideally, use OCaml 4.08 or higher (for [beautiful error messages](https://github.com/ocaml/ocaml/pull/2096)).
+All required dependencies can be installed using the [opam](http://opam.ocaml.org) package manager.
 The project can be built using [dune](https://dune.build).
-Consult the [dune-project file](dune-project) for the necessary dependencies;
-all of them can be installed using the [opam](http://opam.ocaml.org) package manager.
+```
+opam install . --deps-only --with-test
+dune build
+dune runtest
+```
 
 ## Suggestions and Improvements
 Suggestions and changes are welcome. Please submit pull requests, or open issues.
