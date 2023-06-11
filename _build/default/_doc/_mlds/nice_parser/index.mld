@@ -1,0 +1,4 @@
+{0 nice_parser index}
+{1 Library nice_parser}
+The entry point of this library is the module:
+{!module-Nice_parser}.
