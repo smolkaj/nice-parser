@@ -8,12 +8,12 @@ build: [
 ]
 maintainer: ["Steffen Smolka <steffen.smolka@gmail.com>"]
 authors: ["Steffen Smolka <steffen.smolka@gmail.com>"]
-bug-reports: "https://github.com/smolkaj/ocaml-parsing/issues"
-homepage: "https://github.com/smolkaj/ocaml-parsing"
-doc: "https://smolkaj.github.io/ocaml-parsing/nice_parser/"
+bug-reports: "https://github.com/smolkaj/nice-parser/issues"
+homepage: "https://github.com/smolkaj/nice-parser"
+doc: "https://smolkaj.github.io/nice-parser/nice_parser/"
 license: "MIT"
 version: "1.0.0"
-dev-repo: "git+https://github.com/smolkaj/ocaml-parsing.git"
+dev-repo: "git+https://github.com/smolkaj/nice-parser.git"
 synopsis: "Nice parsers without the boilerplate"
 description:
   "Nice_parser wraps your {menhir, ocamlyacc}-generated parser in a sane interface, eliminating boilerplate code."

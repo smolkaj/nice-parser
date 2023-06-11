@@ -26,7 +26,7 @@
   "Nice_parser wraps your {menhir, ocamlyacc}-generated parser in a sane interface, eliminating boilerplate code.")
  (depends
   (ocaml
-   (>= 4.05.0))
+   (>= 4.08.0))
   (dune
    (and
     :build
